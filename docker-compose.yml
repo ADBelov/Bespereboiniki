@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  bespereboiniki:
+    image: bespereboiniki:1
+    build:
+      context: .
+      dockerfile: ./Bespereboiniki/Dockerfile
+    depends_on:
+      - bespereboiniki-mssql
+    ports:
+      - 5000:5000
+  bespereboiniki-mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
