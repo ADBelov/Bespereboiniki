@@ -55,7 +55,8 @@ namespace Bespereboiniki
 
             app.UseRouting(); // используем систему маршрутизации
 
-            app.UseAuthorization();
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
 
             app.UseEndpoints(endpoints =>
             {

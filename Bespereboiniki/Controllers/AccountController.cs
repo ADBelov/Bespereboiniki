@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Bespereboiniki.Datalayer.Repositories;
 using Bespereboiniki.Datalayer.Tables;
 using Bespereboiniki.Models;
@@ -20,24 +21,28 @@ namespace Bespereboiniki.Controllers
 
         public IActionResult Login([FromQuery] string returnUrl)
         {
-            ViewData["returnUrl"] = returnUrl;
-            return View(new UserModel());
+            return View(new UserModel() {ReturnUrl = returnUrl});
         }
 
         [HttpPost]
-        public IActionResult SignIn(UserModel userModel)
+        public async Task<IActionResult> SignIn(UserModel userModel)
         {
             var user = userRepository.GetUserByLogin(userModel.Login);
 
-            if (user == null || user.Password != userModel.Password) return Redirect("/Account/Login");
+            if (user == null || user.Password != userModel.Password) return Redirect("/Account/AccessDenied");
 
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, CreateClaims(user));
-            return Redirect(userModel.ReturnUrl);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, CreateClaims(user));
+            return Redirect(userModel.ReturnUrl ?? "/");
         }
 
-        public IActionResult SignOut()
+        public IActionResult AccessDenied()
         {
-            HttpContext.SignOutAsync();
+            return View();
+        }
+
+        public async Task<IActionResult> SignOut()
+        {
+            await HttpContext.SignOutAsync();
             return Redirect("/Account/Login");
         }
 

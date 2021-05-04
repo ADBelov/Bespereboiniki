@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <title>title</title>
 </head>
 <body>
+@model Bespereboiniki.Models.UserModel;
 <div>
     @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <input type="hidden" value="@ViewData["returnUrl"]" name="returnUrl"/>
+        <input type="hidden" value="@Model.ReturnUrl" name="ReturnUrl"/>
         <table class="inputs-table">
             <tr>
                 <td>
                     <p>Введите имя </p>
                 </td>
                 <td>
-                    <input type="text" name="Name"/>
+                    <input type="text" name="Login"/>
                 </td>
             </tr>
 
