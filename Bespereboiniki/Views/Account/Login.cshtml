@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" value="@ViewData["returnUrl"]" name="returnUrl"/>
+        <table class="inputs-table">
+            <tr>
+                <td>
+                    <p>Введите имя </p>
+                </td>
+                <td>
+                    <input type="text" name="Name"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>Введите парол </p>
+                </td>
+                <td>
+                    <input type="password" name="Password"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Отправить"/>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    }
+    <h1>После авторизации вы будете перемещены обратно на страницу по адресу "@ViewData["returnUrl"]" </h1>
+</div>
+</body>
+</html>

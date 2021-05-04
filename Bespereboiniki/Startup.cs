@@ -1,6 +1,7 @@
 using System.IO;
 using Bespereboiniki.Datalayer;
 using Bespereboiniki.Datalayer.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +23,17 @@ namespace Bespereboiniki
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie();
+
             services.AddControllersWithViews();
 
             services.AddTransient<IUPSRepository, UPSRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddDbContext<UPSContext>(options =>
                 options.UseSqlServer($"Server={Configuration["DbServer"]},{Configuration["DbPort"]};Database={Configuration["DbName"]};User ID={Configuration["DbUser"]};Password={Configuration["DbPassword"]};Integrated Security=False"));

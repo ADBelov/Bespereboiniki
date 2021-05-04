@@ -10,7 +10,7 @@
     @using (Html.BeginForm("PostBespereboinik", "Add", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <input type="hidden" value="@Model.Id" name="BookId"/>
+        <input type="hidden" value="@Model.Id" name="Id"/>
         <table class="inputs-table">
             <tr>
                 <td>
