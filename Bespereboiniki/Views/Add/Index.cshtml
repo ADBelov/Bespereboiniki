@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+@model Bespereboiniki.Datalayer.Tables.UPS
+<html>
+<head>
+    <title>Страница добавления бесперебойников</title>
+</head>
+<body>
+<div style="margin: auto">
+    <h1>Бесперебойники.рф</h1>
+    @using (Html.BeginForm("PostBespereboinik", "Add", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" value="@Model.Id" name="BookId"/>
+        <table class="inputs-table">
+            <tr>
+                <td>
+                    <p>Введите имя </p>
+                </td>
+                <td>
+                    <input type="text" name="Name"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Введите напругу на вход :</p>
+                </td>
+                <td>
+                    <input type="text" name="Uin"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Введите напругу на выход :</p>
+                </td>
+                <td>
+                    <input type="text" name="Uout"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Введите ширину :</p>
+                </td>
+                <td>
+                    <input type="text" name="Width"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Введите высоту :</p>
+                </td>
+                <td>
+                    <input type="text" name="Height"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Введите долготу :</p>
+                </td>
+                <td>
+                    <input type="text" name="Length"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Отправить"/>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    }
+</div>
+</body>
+</html>
