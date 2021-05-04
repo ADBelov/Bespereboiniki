@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bespereboiniki.Controllers
 {
-    public class Test : Controller
+    public class Home : Controller
     {
         private readonly IUPSRepository upsRepository;
 
-        public Test(IUPSRepository upsRepository)
+        public Home(IUPSRepository upsRepository)
         {
             this.upsRepository = upsRepository;
         }
