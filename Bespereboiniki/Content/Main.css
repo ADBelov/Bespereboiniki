@@ -36,3 +36,13 @@
     font-weight: bold;
     color: #009879;
 }
+
+.navigation-table {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.navigation-table td {
+    padding-right: 20px;
+}
