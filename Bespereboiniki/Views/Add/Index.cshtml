@@ -1,17 +1,13 @@
-<!DOCTYPE html>
 @model Bespereboiniki.Datalayer.Tables.UPS
-<html>
-<head>
-    <title>Страница добавления бесперебойников</title>
-</head>
-<body>
-<div style="margin: auto">
-    <h1>Бесперебойники.рф</h1>
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div>
     @using (Html.BeginForm("PostBespereboinik", "Add", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" value="@Model.Id" name="Id"/>
-        <table class="inputs-table">
+        <table class="add-ups-table">
             <tr>
                 <td>
                     <p>Введите имя </p>
@@ -69,5 +65,3 @@
         </table>
     }
 </div>
-</body>
-</html>

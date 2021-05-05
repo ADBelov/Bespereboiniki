@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
 @model Bespereboiniki.Models.UserModel;
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
 <div>
     @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" value="@Model.ReturnUrl" name="ReturnUrl"/>
-        <table class="inputs-table">
+        <table class="login-table">
             <tr>
                 <td>
                     <p>Введите имя </p>
@@ -37,7 +34,5 @@
             </tr>
         </table>
     }
-    <h1>После авторизации вы будете перемещены обратно на страницу по адресу "@ViewData["returnUrl"]" </h1>
+    <h1 style="text-align: center">После авторизации вы будете перемещены обратно на страницу по адресу "@Model.ReturnUrl" </h1>
 </div>
-</body>
-</html>

@@ -37,9 +37,12 @@
     color: #009879;
 }
 
-.navigation-table {
+.navigation-table, .add-ups-table, .login-table {
     display: flex;
     justify-content: center;
+}
+
+.navigation-table-border {
     border: 1px solid black;
 }
 

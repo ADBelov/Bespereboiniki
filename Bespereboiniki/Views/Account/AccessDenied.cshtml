@@ -1,19 +1,9 @@
-@model object
-
 @{
-    Layout = null;
+    Layout = "~/Views/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>Тикай отсюдова</title>
-</head>
-<body>
 <div>
-    <h1>Ты не пройдешь!</h1>
-    <a href="/Account/Login">Попробовать еще раз!</a>
+    <h1 style="text-align: center">Ты не пройдешь!</h1>
+    <a style="display: flex; justify-content: center; padding-bottom: 20px" href="/Account/Login">Войти под другой учетной записью!</a>
+    <a style="display: flex; justify-content: center" href="@ViewData["returnUrl"]">Вернутся обратно на "@ViewData["returnUrl"]"!</a>
 </div>
-</body>
-</html>
