@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bespereboiniki.Controllers
 {
-    public class AddController : Controller
+    public class AddUpsController : Controller
     {
         private readonly IUPSRepository upsRepository;
 
-        public AddController(IUPSRepository upsRepository)
+        public AddUpsController(IUPSRepository upsRepository)
         {
             this.upsRepository = upsRepository;
         }

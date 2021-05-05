@@ -22,18 +22,18 @@ namespace Bespereboiniki.Controllers
 
         public IActionResult Login([FromQuery] string returnUrl)
         {
-            return View(new UserModel() {ReturnUrl = returnUrl ?? homePage});
+            return View(new UserLoginModel() {ReturnUrl = returnUrl ?? homePage});
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(UserModel userModel)
+        public async Task<IActionResult> SignIn(UserLoginModel userLoginModel)
         {
-            var user = userRepository.GetUserByLogin(userModel.Login);
+            var user = userRepository.GetUserByLogin(userLoginModel.Login);
 
-            if (user == null || user.Password != userModel.Password) return Redirect("/Account/AccessDenied");
+            if (user == null || user.Password != userLoginModel.Password) return Redirect("/Account/AccessDenied");
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, CreateClaims(user));
-            return Redirect(userModel.ReturnUrl ?? homePage);
+            return Redirect(userLoginModel.ReturnUrl ?? homePage);
         }
 
         public IActionResult AccessDenied([FromQuery] string returnUrl)

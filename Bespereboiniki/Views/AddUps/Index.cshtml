@@ -3,7 +3,7 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 <div>
-    @using (Html.BeginForm("PostBespereboinik", "Add", FormMethod.Post))
+    @using (Html.BeginForm("PostBespereboinik", "AddUps", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" value="@Model.Id" name="Id"/>
