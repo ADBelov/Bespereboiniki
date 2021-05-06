@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using Bespereboiniki.Datalayer;
 using Bespereboiniki.Datalayer.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -43,8 +44,6 @@ namespace Bespereboiniki
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            DatabaseManagementService.MigrationInitialisation(app);
-
             app.UseHttpsRedirection();
 
             app.UseStaticFiles(new StaticFileOptions
@@ -65,6 +64,14 @@ namespace Bespereboiniki
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //DatabaseManagementService.MigrationInitialisation(app);
+            var context = app.ApplicationServices.GetService<UPSContext>();
+            var pendingMigrations = context.Database.GetPendingMigrations();
+            if (pendingMigrations.Any())
+            {
+                context.Database.Migrate();
+            }
         }
     }
 }
