@@ -9,6 +9,7 @@ namespace Bespereboiniki.Datalayer.Repositories
     {
         User? GetUserByLogin(string login);
         List<User> GetUsers(int skip, int take);
+        User Add(User userToAdd);
     }
 
     public class UserRepository : IUserRepository
@@ -34,6 +35,13 @@ namespace Bespereboiniki.Datalayer.Repositories
             return context.Users
                 .Include(user => user.UserRole)
                 .FirstOrDefault(user => user.Login == login);
+        }
+
+        public User Add(User userToAdd)
+        {
+            context.Users.Add(userToAdd);
+            context.SaveChanges();
+            return userToAdd;
         }
     }
 }

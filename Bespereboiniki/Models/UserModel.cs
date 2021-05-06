@@ -6,8 +6,6 @@ namespace Bespereboiniki.Models
 {
     public class UserModel
     {
-        public Guid Id { get; set; }
-        
         public string Login { get; set; }
 
         public string Password { get; set; }
@@ -18,6 +16,6 @@ namespace Bespereboiniki.Models
 
         public string LastName { get; set; }
 
-        public List<Role> PossibleRoles { get; set; }
+        public string SelectedRoleId { get; set; }
     }
 }

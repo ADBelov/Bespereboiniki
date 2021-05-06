@@ -34,6 +34,7 @@ namespace Bespereboiniki
 
             services.AddTransient<IUPSRepository, UPSRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
 
             services.AddDbContext<UPSContext>(options =>
                 options.UseSqlServer($"Server={Configuration["DbServer"]},{Configuration["DbPort"]};Database={Configuration["DbName"]};User ID={Configuration["DbUser"]};Password={Configuration["DbPassword"]};Integrated Security=False"));
@@ -55,8 +56,8 @@ namespace Bespereboiniki
 
             app.UseRouting(); // используем систему маршрутизации
 
-            app.UseAuthentication();    // аутентификация
-            app.UseAuthorization();     // авторизация
+            app.UseAuthentication(); // аутентификация
+            app.UseAuthorization(); // авторизация
 
             app.UseEndpoints(endpoints =>
             {

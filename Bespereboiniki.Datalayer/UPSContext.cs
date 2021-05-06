@@ -50,6 +50,10 @@ namespace Bespereboiniki.Datalayer
                 LastName = "Фсея Бесперебойники.рф",
                 RoleId = new Guid("57EB14FB-CFB9-43B6-869D-28BB06E57540")
             });
+            
+            modelBuilder.Entity<User>(entity => {
+                entity.HasIndex(e => e.Login).IsUnique();
+            });
         }
 
         // for migrations
